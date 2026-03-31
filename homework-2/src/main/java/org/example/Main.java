@@ -1,17 +1,25 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
-        }
+        Product funkoPop = new Product("Фігурка FunkoPop", 1, 800);
+        Product pot = new Product("Кастрюля", 2, 1500);
+        Product oilPaint = new Product("Олійні фарби Rosa Studio", 3, 1700);
+
+        ArrayList<Product> products = new ArrayList<Product>(List.of(funkoPop, pot, oilPaint));
+        VendingMachine vendingMachine = new VendingMachine(products);
+        String[] affordableProducts = vendingMachine.getProductNames();
+        System.out.println("Доступні товари: " + Arrays.toString(affordableProducts));
+        vendingMachine.insertMoney(1000);
+        vendingMachine.selectProduct(2);
+        vendingMachine.insertMoney(2700);
+        vendingMachine.selectProduct(2);
+        System.out.println("Решта: " + vendingMachine.getChange());
+
     }
 }
